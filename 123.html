@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>徐娜生日快乐</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffebee;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #ffebee 100%);
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 600px;
+            margin: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            color: #e91e63;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            color: #555;
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            background-color: #e91e63;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+        
+        .balloon:before {
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 50px;
+            background-color: #888;
+            top: 50px;
+            left: 20px;
+        }
+        
+        .cake {
+            font-size: 60px;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .signature {
+            font-style: italic;
+            color: #e91e63;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+        
+        .hearts {
+            color: #e91e63;
+            font-size: 24px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 气球装饰 -->
+        <div class="balloon" style="top: -20px; left: 50px;"></div>
+        <div class="balloon" style="top: -30px; right: 80px; background-color: #9c27b0;"></div>
+        <div class="balloon" style="top: 20px; right: 40px; background-color: #2196f3;"></div>
+        
+        <h1>徐娜，生日快乐！</h1>
+        
+        <div class="cake">🎂</div>
+        
+        <p>在这个特别的日子里，</p>
+        <p>愿你的笑容如阳光般灿烂，</p>
+        <p>愿你的生活如蜜糖般甜美，</p>
+        <p>愿你的每一天都充满幸福与欢乐！</p>
+        
+        <div class="hearts">❤ ❤ ❤</div>
+        
+        <p>愿新的一岁带给你更多的惊喜，</p>
+        <p>更多的成就，和更多美好的回忆！</p>
+        
+        <div class="signature">祝福你的人</div>
+    </div>
+
+    <script>
+        // 添加更多气球动画
+        function createBalloons() {
+            const colors = ['#e91e63', '#9c27b0', '#2196f3', '#4caf50', '#ff9800'];
+            const container = document.querySelector('.container');
+            
+            for (let i = 0; i < 10; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.left = Math.random() * 80 + 10 + '%';
+                balloon.style.top = Math.random() * 100 + 100 + '%';
+                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.opacity = Math.random() * 0.5 + 0.3;
+                balloon.style.transform = 'scale(' + (Math.random() * 0.7 + 0.3) + ')';
+                container.appendChild(balloon);
+                
+                animateBalloon(balloon);
+            }
+        }
+        
+        function animateBalloon(balloon) {
+            let pos = 100;
+            const speed = Math.random() * 2 + 1;
+            
+            function frame() {
+                if (pos < -20) {
+                    pos = 100;
+                    balloon.style.left = Math.random() * 80 + 10 + '%';
+                } else {
+                    pos -= speed;
+                    balloon.style.top = pos + '%';
+                }
+                requestAnimationFrame(frame);
+            }
+            
+            frame();
+        }
+        
+        window.onload = function() {
+            createBalloons();
+        };
+    </script>
+</body>
+</html>
